@@ -1,0 +1,9 @@
+SELECT
+    s.student_name,
+    s.department,
+    sp.sport_name,
+    sp.level,
+    sp.achievement
+FROM students s
+JOIN sports sp
+ON s.student_id = sp.student_id;
