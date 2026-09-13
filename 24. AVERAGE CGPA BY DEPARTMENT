@@ -1,0 +1,5 @@
+SELECT
+    department,
+    ROUND(AVG(cgpa), 2) AS average_cgpa
+FROM students
+GROUP BY department;
