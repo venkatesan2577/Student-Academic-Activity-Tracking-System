@@ -1,0 +1,9 @@
+SELECT
+    s.student_name,
+    s.department,
+    s.cgpa
+FROM students s
+LEFT JOIN placements p
+ON s.student_id = p.student_id
+WHERE p.placement_status = 'Not Placed'
+   OR p.placement_status IS NULL;
