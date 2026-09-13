@@ -1,0 +1,11 @@
+SELECT
+    s.register_no,
+    s.student_name,
+    s.department,
+    a.semester,
+    a.subject,
+    a.marks,
+    a.grade
+FROM students s
+JOIN academics a
+ON s.student_id = a.student_id;
