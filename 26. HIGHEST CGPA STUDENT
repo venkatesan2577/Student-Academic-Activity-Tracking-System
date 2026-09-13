@@ -1,0 +1,7 @@
+SELECT
+    student_name,
+    department,
+    cgpa
+FROM students
+ORDER BY cgpa DESC
+LIMIT 1;
