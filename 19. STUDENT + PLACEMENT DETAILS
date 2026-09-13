@@ -1,0 +1,11 @@
+SELECT
+    s.register_no,
+    s.student_name,
+    s.department,
+    p.company_name,
+    p.job_role,
+    p.package_lpa,
+    p.placement_status
+FROM students s
+LEFT JOIN placements p
+ON s.student_id = p.student_id;
