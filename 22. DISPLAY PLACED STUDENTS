@@ -1,0 +1,10 @@
+SELECT
+    s.student_name,
+    s.department,
+    p.company_name,
+    p.job_role,
+    p.package_lpa
+FROM students s
+JOIN placements p
+ON s.student_id = p.student_id
+WHERE p.placement_status = 'Placed';
