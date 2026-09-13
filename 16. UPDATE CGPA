@@ -1,0 +1,4 @@
+
+UPDATE students
+SET cgpa = 8.60
+WHERE student_id = 1;
