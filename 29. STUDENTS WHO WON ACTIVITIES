@@ -1,0 +1,9 @@
+SELECT
+    s.student_name,
+    e.activity_name,
+    e.achievement
+FROM students s
+JOIN extracurricular_activities e
+ON s.student_id = e.student_id
+WHERE e.achievement LIKE '%Winner%'
+   OR e.achievement LIKE '%First Prize%';
