@@ -1,0 +1,19 @@
+INSERT INTO placements
+(student_id, company_name, job_role, package_lpa,
+ placement_status, placement_date)
+VALUES
+
+(1, 'TCS', 'Software Developer', 4.50,
+ 'Placed', '2026-02-15'),
+
+(2, 'Infosys', 'Systems Engineer', 5.00,
+ 'Placed', '2026-02-18'),
+
+(3, 'Wipro', 'Project Engineer', 3.80,
+ 'Placed', '2026-02-20'),
+
+(4, NULL, NULL, NULL,
+ 'Not Placed', NULL),
+
+(5, 'Accenture', 'Associate Software Engineer', 4.50,
+ 'Placed', '2026-03-10');
