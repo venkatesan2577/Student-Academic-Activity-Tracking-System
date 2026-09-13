@@ -1,0 +1,13 @@
+CREATE TABLE academics (
+    academic_id INT PRIMARY KEY AUTO_INCREMENT,
+    student_id INT NOT NULL,
+    semester INT NOT NULL,
+    subject VARCHAR(100) NOT NULL,
+    marks INT,
+    grade VARCHAR(5),
+
+    FOREIGN KEY (student_id)
+    REFERENCES students(student_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
