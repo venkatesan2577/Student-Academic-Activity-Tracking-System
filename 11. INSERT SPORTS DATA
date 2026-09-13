@@ -1,0 +1,19 @@
+INSERT INTO sports
+(student_id, sport_name, level,
+ achievement, participation_date)
+VALUES
+
+(1, 'Cricket', 'College',
+ 'Winner', '2025-08-20'),
+
+(2, 'Badminton', 'District',
+ 'Runner Up', '2025-09-15'),
+
+(3, 'Football', 'College',
+ 'Winner', '2025-10-20'),
+
+(4, 'Athletics', 'University',
+ 'Third Place', '2025-11-25'),
+
+(5, 'Volleyball', 'College',
+ 'Runner Up', '2025-09-30');
