@@ -1,0 +1,325 @@
+CREATE DATABASE IF NOT EXISTS student_activity_tracking;
+USE student_activity_tracking;
+CREATE TABLE students (
+    student_id INT PRIMARY KEY AUTO_INCREMENT,
+    register_no VARCHAR(20) NOT NULL UNIQUE,
+    student_name VARCHAR(100) NOT NULL,
+    gender VARCHAR(10),
+    date_of_birth DATE,
+    email VARCHAR(100) UNIQUE,
+    phone VARCHAR(15),
+    department VARCHAR(50),
+    year_of_study INT,
+    cgpa DECIMAL(3,2)
+);
+CREATE TABLE academics (
+    academic_id INT PRIMARY KEY AUTO_INCREMENT,
+    student_id INT NOT NULL,
+    semester INT NOT NULL,
+    subject VARCHAR(100) NOT NULL,
+    marks INT,
+    grade VARCHAR(5),
+
+    FOREIGN KEY (student_id)
+    REFERENCES students(student_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
+CREATE TABLE placements (
+    placement_id INT PRIMARY KEY AUTO_INCREMENT,
+    student_id INT NOT NULL,
+    company_name VARCHAR(100),
+    job_role VARCHAR(100),
+    package_lpa DECIMAL(5,2),
+    placement_status VARCHAR(30),
+    placement_date DATE,
+
+    FOREIGN KEY (student_id)
+    REFERENCES students(student_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
+CREATE TABLE extracurricular_activities (
+    activity_id INT PRIMARY KEY AUTO_INCREMENT,
+    student_id INT NOT NULL,
+    activity_name VARCHAR(100),
+    activity_type VARCHAR(50),
+    achievement VARCHAR(100),
+    activity_date DATE,
+
+    FOREIGN KEY (student_id)
+    REFERENCES students(student_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
+CREATE TABLE sports (
+    sport_id INT PRIMARY KEY AUTO_INCREMENT,
+    student_id INT NOT NULL,
+    sport_name VARCHAR(100),
+    level VARCHAR(50),
+    achievement VARCHAR(100),
+    participation_date DATE,
+
+    FOREIGN KEY (student_id)
+    REFERENCES students(student_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
+INSERT INTO students
+(register_no, student_name, gender, date_of_birth,
+ email, phone, department, year_of_study, cgpa)
+VALUES
+
+('CSE001', 'Venkat', 'Male', '2003-05-15',
+ 'venkat@gmail.com', '9876543210', 'CSE', 4, 8.45),
+
+('CSE002', 'Trisha', 'Female', '2003-08-20',
+ 'trisha@gmail.com', '9876543211', 'CSE', 4, 9.10),
+
+('ECE001', 'Rahul Kumar', 'Male', '2003-02-10',
+ 'rahul@gmail.com', '9876543212', 'ECE', 3, 7.85),
+
+('IT001', 'Sneha Devi', 'Female', '2004-01-25',
+ 'sneha@gmail.com', '9876543213', 'IT', 3, 8.75),
+
+('CSE003', 'Karthik Raj', 'Male', '2003-11-12',
+ 'karthik@gmail.com', '9876543214', 'CSE', 4, 8.20);
+ 
+INSERT INTO academics
+(student_id, semester, subject, marks, grade)
+VALUES
+
+(1, 7, 'Database Management Systems', 85, 'A'),
+(1, 7, 'Java Programming', 90, 'A+'),
+(1, 7, 'Operating Systems', 78, 'B+'),
+
+(2, 7, 'Database Management Systems', 95, 'A+'),
+(2, 7, 'Java Programming', 92, 'A+'),
+(2, 7, 'Operating Systems', 88, 'A'),
+
+(3, 5, 'Digital Electronics', 80, 'A'),
+(3, 5, 'Computer Networks', 75, 'B+'),
+
+(4, 5, 'Web Development', 91, 'A+'),
+(4, 5, 'Database Management Systems', 86, 'A'),
+
+(5, 7, 'Database Management Systems', 82, 'A'),
+(5, 7, 'Java Programming', 85, 'A'),
+(5, 7, 'Computer Networks', 79, 'B+');
+
+INSERT INTO placements
+(student_id, company_name, job_role, package_lpa,
+ placement_status, placement_date)
+VALUES
+
+(1, 'TCS', 'Software Developer', 4.50,
+ 'Placed', '2026-02-15'),
+
+(2, 'Infosys', 'Systems Engineer', 5.00,
+ 'Placed', '2026-02-18'),
+
+(3, 'Wipro', 'Project Engineer', 3.80,
+ 'Placed', '2026-02-20'),
+
+(4, NULL, NULL, NULL,
+ 'Not Placed', NULL),
+
+(5, 'Accenture', 'Associate Software Engineer', 4.50,
+ 'Placed', '2026-03-10');
+
+INSERT INTO extracurricular_activities
+(student_id, activity_name, activity_type,
+ achievement, activity_date)
+VALUES
+
+(1, 'Coding Club', 'Technical',
+ 'Best Performer', '2025-09-10'),
+
+(2, 'Hackathon', 'Technical',
+ 'Second Prize', '2025-10-15'),
+
+(3, 'NSS', 'Social Service',
+ 'Volunteer', '2025-11-05'),
+
+(4, 'Paper Presentation', 'Academic',
+ 'First Prize', '2025-12-10'),
+
+(5, 'Technical Symposium', 'Technical',
+ 'Winner', '2025-10-25');
+
+INSERT INTO sports
+(student_id, sport_name, level,
+ achievement, participation_date)
+VALUES
+
+(1, 'Cricket', 'College',
+ 'Winner', '2025-08-20'),
+
+(2, 'Badminton', 'District',
+ 'Runner Up', '2025-09-15'),
+
+(3, 'Football', 'College',
+ 'Winner', '2025-10-20'),
+
+(4, 'Athletics', 'University',
+ 'Third Place', '2025-11-25'),
+
+(5, 'Volleyball', 'College',
+ 'Runner Up', '2025-09-30');
+
+SELECT *
+FROM students;
+
+SELECT *
+FROM students
+WHERE department = 'CSE';
+
+SELECT
+    student_name,
+    department,
+    cgpa
+FROM students
+WHERE cgpa > 8.5;
+
+UPDATE students
+SET cgpa = 8.60
+WHERE student_id = 1;
+
+UPDATE students
+SET phone = '9999999999'
+WHERE register_no = 'CSE001';
+
+SELECT
+    s.register_no,
+    s.student_name,
+    s.department,
+    p.company_name,
+    p.job_role,
+    p.package_lpa,
+    p.placement_status
+FROM students s
+LEFT JOIN placements p
+ON s.student_id = p.student_id;
+
+SELECT
+    s.student_name,
+    s.department,
+    e.activity_name,
+    e.activity_type,
+    e.achievement
+FROM students s
+JOIN extracurricular_activities e
+ON s.student_id = e.student_id;
+
+SELECT
+    s.student_name,
+    s.department,
+    sp.sport_name,
+    sp.level,
+    sp.achievement
+FROM students s
+JOIN sports sp
+ON s.student_id = sp.student_id;
+
+SELECT
+    s.student_name,
+    s.department,
+    p.company_name,
+    p.job_role,
+    p.package_lpa
+FROM students s
+JOIN placements p
+ON s.student_id = p.student_id
+WHERE p.placement_status = 'Placed';
+
+SELECT
+    s.student_name,
+    s.department,
+    s.cgpa
+FROM students s
+LEFT JOIN placements p
+ON s.student_id = p.student_id
+WHERE p.placement_status = 'Not Placed'
+   OR p.placement_status IS NULL;
+   
+   SELECT
+    department,
+    ROUND(AVG(cgpa), 2) AS average_cgpa
+FROM students
+GROUP BY department;
+
+SELECT
+    department,
+    COUNT(*) AS total_students
+FROM students
+GROUP BY department;
+
+SELECT
+    student_name,
+    department,
+    cgpa
+FROM students
+ORDER BY cgpa DESC
+LIMIT 1;
+
+SELECT
+    s.student_name,
+    p.company_name,
+    p.job_role,
+    p.package_lpa
+FROM students s
+JOIN placements p
+ON s.student_id = p.student_id
+WHERE p.package_lpa = (
+    SELECT MAX(package_lpa)
+    FROM placements
+);
+
+SELECT DISTINCT
+    s.student_name,
+    s.department,
+    sp.sport_name
+FROM students s
+JOIN sports sp
+ON s.student_id = sp.student_id;
+
+SELECT
+    s.student_name,
+    e.activity_name,
+    e.achievement
+FROM students s
+JOIN extracurricular_activities e
+ON s.student_id = e.student_id
+WHERE e.achievement LIKE '%Winner%'
+   OR e.achievement LIKE '%First Prize%';
+   
+   SELECT
+    s.register_no,
+    s.student_name,
+    s.department,
+    s.year_of_study,
+    s.cgpa,
+    p.company_name,
+    p.job_role,
+    p.package_lpa,
+    p.placement_status
+FROM students s
+LEFT JOIN placements p
+ON s.student_id = p.student_id
+ORDER BY s.cgpa DESC;
+
+SELECT
+    placement_status,
+    COUNT(*) AS total_students
+FROM placements
+GROUP BY placement_status;
+
+SELECT
+    s.student_name,
+    s.cgpa,
+    p.company_name,
+    p.package_lpa
+FROM students s
+LEFT JOIN placements p
+ON s.student_id = p.student_id
+ORDER BY s.cgpa DESC;
