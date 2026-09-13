@@ -1,0 +1,9 @@
+SELECT
+    s.student_name,
+    s.cgpa,
+    p.company_name,
+    p.package_lpa
+FROM students s
+LEFT JOIN placements p
+ON s.student_id = p.student_id
+ORDER BY s.cgpa DESC;
