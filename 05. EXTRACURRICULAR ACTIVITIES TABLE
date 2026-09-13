@@ -1,0 +1,13 @@
+CREATE TABLE extracurricular_activities (
+    activity_id INT PRIMARY KEY AUTO_INCREMENT,
+    student_id INT NOT NULL,
+    activity_name VARCHAR(100),
+    activity_type VARCHAR(50),
+    achievement VARCHAR(100),
+    activity_date DATE,
+
+    FOREIGN KEY (student_id)
+    REFERENCES students(student_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
