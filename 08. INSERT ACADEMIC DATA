@@ -1,0 +1,21 @@
+INSERT INTO academics
+(student_id, semester, subject, marks, grade)
+VALUES
+
+(1, 7, 'Database Management Systems', 85, 'A'),
+(1, 7, 'Java Programming', 90, 'A+'),
+(1, 7, 'Operating Systems', 78, 'B+'),
+
+(2, 7, 'Database Management Systems', 95, 'A+'),
+(2, 7, 'Java Programming', 92, 'A+'),
+(2, 7, 'Operating Systems', 88, 'A'),
+
+(3, 5, 'Digital Electronics', 80, 'A'),
+(3, 5, 'Computer Networks', 75, 'B+'),
+
+(4, 5, 'Web Development', 91, 'A+'),
+(4, 5, 'Database Management Systems', 86, 'A'),
+
+(5, 7, 'Database Management Systems', 82, 'A'),
+(5, 7, 'Java Programming', 85, 'A'),
+(5, 7, 'Computer Networks', 79, 'B+');
