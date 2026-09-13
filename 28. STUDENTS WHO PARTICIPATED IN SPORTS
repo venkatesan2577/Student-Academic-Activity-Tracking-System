@@ -1,0 +1,7 @@
+SELECT DISTINCT
+    s.student_name,
+    s.department,
+    sp.sport_name
+FROM students s
+JOIN sports sp
+ON s.student_id = sp.student_id;
