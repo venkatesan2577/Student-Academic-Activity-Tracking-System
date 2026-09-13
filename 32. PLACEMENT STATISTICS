@@ -1,0 +1,5 @@
+SELECT
+    placement_status,
+    COUNT(*) AS total_students
+FROM placements
+GROUP BY placement_status;
