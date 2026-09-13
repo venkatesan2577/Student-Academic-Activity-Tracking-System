@@ -1,0 +1,3 @@
+UPDATE students
+SET phone = '9999999999'
+WHERE register_no = 'CSE001';
